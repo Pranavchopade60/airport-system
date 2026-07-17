@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Airport Security System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        body {
+            background: #f2f5f7;
+        }
+        
+        header {
+            background: #0b3d91;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+        
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
+            margin-bottom: 25px;
+        }
+        
+        h2 {
+            margin-bottom: 20px;
+            color: #0b3d91;
+        }
+        
+        input[type=file] {
+            width: 100%;
+            padding: 12px;
+            border: 2px dashed #0b3d91;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            border: none;
+            background: #0b3d91;
+            color: white;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #062d6f;
+        }
+        
+        img {
+            margin-top: 20px;
+            width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        #status {
+            margin-top: 15px;
+            font-weight: bold;
+            color: green;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        table th {
+            background: #0b3d91;
+            color: white;
+            padding: 10px;
+        }
+        
+        table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: #555;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        Airport Security Monitoring System
+
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h2>Upload Image</h2>
+
+            <input type="file" id="image" accept="image/*">
+
+            <img id="preview">
+
+            <button onclick="uploadImage()">
+
+Upload Image
+
+</button>
+
+            <div id="status"></div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Detection Dashboard</h2>
+
+            <table>
+
+                <tr>
+                    <th>Object</th>
+                    <th>Count</th>
+                </tr>
+
+                <tr>
+                    <td>Knife</td>
+                    <td id="knife">0</td>
+                </tr>
+
+                <tr>
+                    <td>Gun</td>
+                    <td id="gun">0</td>
+                </tr>
+
+                <tr>
+                    <td>Bomb</td>
+                    <td id="bomb">0</td>
+                </tr>
+
+                <tr>
+                    <td>Person</td>
+                    <td id="person">0</td>
+                </tr>
+
+                <tr>
+                    <td>Bag</td>
+                    <td id="bag">0</td>
+                </tr>
+
+                <tr>
+                    <td>Dog</td>
+                    <td id="dog">0</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <footer>
+
+        AWS Serverless Airport Security System
+
+    </footer>
+
+    <script>
+        let file;
+
+        document.getElementById("image").addEventListener("change", function() {
+
+            file = this.files[0];
+
+            if (file) {
+
+                let reader = new FileReader();
+
+                reader.onload = function(e) {
+
+                    let img = document.getElementById("preview");
+
+                    img.src = e.target.result;
+
+                    img.style.display = "block";
+
+                }
+
+                reader.readAsDataURL(file);
+
+            }
+
+        });
+
+        async function uploadImage() {
+
+            if (!file) {
+
+                alert("Select Image First");
+
+                return;
+
+            }
+
+            document.getElementById("status").innerHTML = "Uploading...";
+
+
+            // PART 2
+            // API Gateway URL will be added here.
+
+            document.getElementById("status").innerHTML = "Ready for API Integration";
+
+        }
+    </script>
+
+</body>
+
+</html>
